@@ -1,16 +1,30 @@
 import React, {useReducer} from 'react';
 import AuthReducer from './reducer';
 
-const AuthContext = React.createContext();
+export const AuthContext = React.createContext();
+
 
 const INITIAL_STATE = {
     isAuthenticated: false,
-    token: null
+    token: null,
+    user: null
 }
 
-const AuthProvider = ({children}) => {
+export const AuthProvider = ({children}) => {
     const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE)
 
+    React.useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token != 'undefined' && token != null ) {
+              dispatch({
+                type: "LOGIN",
+                payload: {
+                  user: JSON.parse(localStorage.getItem("user")),
+                  token
+                },
+              });
+        }
+      }, []);
     
 
     return (
@@ -20,5 +34,3 @@ const AuthProvider = ({children}) => {
     )
 
 }
-
-export default AuthProvider;

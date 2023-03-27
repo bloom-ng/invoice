@@ -1,5 +1,5 @@
 import React from "react";
-import AuthProvider from "./providers/auth/AuthProvider";
+import {AuthProvider} from "./providers/auth/AuthProvider";
 import RouteProvider from "./providers/router/RouteProvider";
 
 const App = ()=> {
