@@ -26,7 +26,9 @@ const Login = () => {
       localStorage.setItem('token', response.token)
       localStorage.setItem('user', JSON.stringify(response.user))
       // setSuccess(true)
-      return navigate('/invoice');
+      // return navigate('/invoice');
+      location.reload();
+      
     } catch (error) {
       alert('Login Failed')
       setLoading(false);
