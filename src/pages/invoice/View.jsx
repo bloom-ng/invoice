@@ -68,6 +68,18 @@ function InvoiceView () {
         return d;
     }
 
+    function mainDate(invoiceDate){
+        const originalDate = new Date(invoiceDate);
+        
+        const year = originalDate.getFullYear().toString();
+        const month = (originalDate.getMonth() + 1).toString().padStart(2, "0");
+        const day = originalDate.getDate().toString().padStart(2, "0");
+        
+        const finalDate = year + month + day;
+        
+        return finalDate;
+    }
+
     return < div className="py-4 px-8">
 
 
@@ -101,7 +113,7 @@ function InvoiceView () {
 
        <div className="flex justify-between font-bold mt-2"> 
             <div className="flex-col">
-                <p className="font-normal my-1">No #{invoice?.id}</p>
+                <p className="font-normal my-1">Invoice No: INV{mainDate(invoice?.created_at)}{invoice?.id}{}</p>
                 <p className="font-normal mb-1">Billed To:</p>
                 <p>{invoice?.billed_to_line_1}</p>
                 <p>{invoice?.billed_to_line_2}</p>
@@ -291,4 +303,3 @@ function InvoiceView () {
 }
 
 export default InvoiceView;
-
