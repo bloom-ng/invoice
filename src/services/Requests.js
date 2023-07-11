@@ -30,7 +30,7 @@ const Request = axios.create({
  Requests.InvoiceList = async (url) => {
     try {
         let res = await Request.get(url ? url : endpoints.invoiceList);
-        return res.data.data;
+        return res.data;
         
     } catch (error) {
         checkAuth(error);
@@ -41,8 +41,8 @@ const Request = axios.create({
  Requests.InvoiceView = async (id) => {
     try {
         let res = await Request.get( endpoints.invoiceView(id));
-        return res.data.data;
-        
+console.log(res.data.data[0]);
+        return res.data.data[0];
     } catch (error) {
         checkAuth(error);
         throw new Error(error);
