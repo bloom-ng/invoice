@@ -85,7 +85,7 @@ console.log(res.data.data[0]);
  Requests.CompanyView = async (id) => {
     try {
         let res = await Request.get( endpoints.companyView(id));
-        return res.data.data;
+        return res.data;
         
     } catch (error) {
         checkAuth(error);
