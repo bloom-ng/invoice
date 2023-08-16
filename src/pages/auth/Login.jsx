@@ -2,7 +2,7 @@ import React from "react";
 import Requests from "../../services/Requests";
 import { AuthContext } from "../../providers/auth/AuthProvider";
 import { useNavigate, Navigate } from "react-router-dom";
-
+import image from '../../assets/image.jpg'
 
 
 
@@ -38,92 +38,79 @@ const Login = () => {
 
 
   return (
-    <>
-    {success && (
+  <>
+  
+  <div className='w-full h-screen flex items-center'>
+            {success && (
           <Navigate to="/" replace={true} />
         )}
-      <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-md space-y-8">
-          <div>
-            <img
-              className="mx-auto h-12 w-auto hidden"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt="Your Company"
-            />
-            <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-              Sign in to continue
-            </h2>
-
+          <div className='relative w-1/2 h-full flex flex-col sm:hidden lg:flex'>
+            {/* <div className="absolute top-[25%] left-[10%] flex flex-col">
+              <h1 className='text-2xl'>Welcome To <span>Bloom Digital</span></h1>
+            </div> */}
+            <img src={image} className='w-full h-full object-cover' alt="" />
           </div>
-          <form className="mt-8 space-y-12"  onSubmit={handleLogin}>
-            <input type="hidden" name="remember" defaultValue="true" />
-            <div className=" space-y-px rounded-md shadow-sm">
-              <div className="py-4">
-                <label htmlFor="email-address" className="sr-only">
-                  Email address
-                </label>
-                <input
-                  id="email-address"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  className="relative block w-full rounded-t-md border-0 px-2 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  placeholder="Email address"
-                  onChange={e => setEmail(e.target.value)}
-                />
-              </div>
-              <div>
-                <label htmlFor="password" className="sr-only">
-                  Password
-                </label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  className="relative block w-full rounded-b-md border-0 px-2 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  placeholder="Password"
-                  onChange={e => setPassword(e.target.value)}
-                />
-              </div>
+        
+        <div className='w-full h-full bg-zinc-100 flex flex-col p-20 items-center justify-between'>
+              <h1 className='text-xl text-black font-bold sm:text-2xl text-center'>
+              Welcome To <br/><span className='text-4xl lg:text-2xl text-orange-600 font-bold'>Bloom Digital Media</span>  
+              </h1>
+              
+                <div className='w-full flex flex-col max-w-[550px]'>
+                  <div className='w-full flex flex-col mb-2'>
+
+                <h3 className='text-5xl lg:text-2xl font-semibold mb-2'>Login</h3>
+                <p className='text-xl md:text-lg mb-2'>Welcome Back!</p>
+                </div>
+                <form onSubmit={handleLogin}>
+                  <div className="w-full flex flex-col">
+                    <input className='w-full text-black py-4 my-2 bg-transparent border-t-0 border-l-0 border-r-0
+                     border-b-1 border-black
+                     outline-none focus:outline-none'  id="email-address"
+                     name="email"
+                     type="email"
+                     autoComplete="email"
+                     required   placeholder="Email address" onChange={e => setEmail(e.target.value)} />
+
+                    <input className='w-full text-black py-4 my-2 bg-transparent  border-t-0 border-l-0 border-r-0
+                     border-b-1 border-black
+                     outline-none focus:outline-none '  id="password"
+                     name="password"
+                     type="password"
+                     autoComplete="current-password"
+                     required placeholder='Password'  onChange={e => setPassword(e.target.value)} />
+
+
+                  </div>
+                  <div className='w-full flex items-center justify-between'>
+                    <div className='w-full flex items-center'>
+                      <input type="checkbox" className='w-4 h-4 mr-2' />
+                      <p className='text-sm'>Remember Me</p>
+                    </div>
+                    <p className='text-sm cursor-pointer underline underline-offset-2 whitespace-nowrap font-medium'>Forgot Password?</p>
+                  </div>
+
+                    <div className='w-full flex flex-col my-4'>
+                      <button type="submit" className='text-white my-2 w-full bg-orange-600 
+                      rounded-md p-4 flex items-center justify-center font-bold hover:bg-black'>
+                     
+                      {loading ? "Signing In" : "Sign in"} 
+                      </button>
+                    </div>
+                    </form>
+
+                </div>
+        
+            <div className="w-full flex items-center justify-center">
+              <p>Dont have an account?</p>
             </div>
 
-            <div className=" items-center justify-between hidden">
-              <div className="flex items-center">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                />
-                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                  Remember me
-                </label>
-              </div>
-
-              <div className="text-sm">
-                <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                  Forgot your password?
-                </a>
-              </div>
-            </div>
-
-            <div>
-              <button
-                type="submit"
-                className="group relative flex w-full justify-center rounded-md bg-orange-600 py-2 px-3 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-
-                 {loading ? "Signing In" : "Sign in"} 
-              </button>
-            </div>
-          </form>
         </div>
-      </div>
+
+    </div>
     </>
+
   )
 }
 
-export default Login;
+export default Login
