@@ -26,7 +26,7 @@ function Invoice ({formData, formTable}) {
         return getSubtotal() + getVat() + getServiceCharge();
     }
 
-    return < div className="py-4 px-8">
+    return( < div className="py-4 px-8">
 
 
         <div className="flex justify-between">
@@ -37,7 +37,7 @@ function Invoice ({formData, formTable}) {
                 </div>
                 
                 {/* BLOOM LOGO */}
-                <svg class="sm:mt-5" width="140" height="45" viewBox="0 0 140 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg className="sm:mt-5" width="140" height="45" viewBox="0 0 140 45" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20.1132 17.8461C19.6295 17.2832 19.0605 16.8328 18.4346 16.4669C19.7149 15.3972 20.3977 13.8209 20.3977 11.7942C20.3977 10.049 19.7718 8.47267 18.5769 7.09339C17.894 6.33338 16.8698 5.7141 15.561 5.29188C14.3376 4.8978 12.8581 4.67261 11.208 4.67261H1.13623V29.556H12.2891C15.7602 29.556 18.2639 28.7115 19.7434 27.0789C21.0237 25.6714 21.678 24.0107 21.678 22.1529C21.6496 20.464 21.1375 19.0284 20.1132 17.8461ZM8.50511 11.2312H9.81386C11.5494 11.2312 12.2322 11.4564 12.4883 11.5972C12.7159 11.7098 12.8297 12.0475 12.8297 12.5824C12.8297 13.3424 12.5736 13.4831 12.4598 13.5113C12.09 13.6802 11.3218 13.8772 9.75696 13.8772H8.47666V11.2312H8.50511ZM13.6548 22.6314C13.2565 22.8284 12.4598 23.0536 10.8666 23.0536H8.50511V20.098H10.3829C12.2891 20.098 13.1996 20.3232 13.6548 20.5203C13.8255 20.6047 14.1385 20.7173 14.1385 21.5618C14.11 22.4062 13.797 22.5751 13.6548 22.6314Z" fill="black"></path>
                         <path d="M42.4476 22.8284V29.584H25.2915V4.70068H32.6888V22.8284H42.4476Z" fill="black"></path>
                         <path d="M130.077 4.70068V29.584H122.709V19.0283L118.355 27.6981H113.917L109.593 19.0565V29.584H102.224V4.70068H110.987L116.165 15.6223L121.371 4.70068H130.077Z" fill="black"></path>
@@ -81,26 +81,26 @@ function Invoice ({formData, formTable}) {
 
 
 
-    <div class="relative overflow-x-auto">
-        <table class="w-full text-sm text-left text-gray-500 ">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+    <div className="relative overflow-x-auto">
+        <table className="w-full text-sm text-left text-gray-500 ">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
                 <tr>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" className="px-6 py-3">
                     # 
                     </th>
-                    <th scope="col" class="px-6 py-3">
-                    Item  
+                    <th scope="col" className="px-6 py-3">
+                    Item
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" className="px-6 py-3">
                     Description
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" className="px-6 py-3">
                     Unit Price 	&#8358;
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" className="px-6 py-3">
                         Qty
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" className="px-6 py-3">
                         Total 	&#8358;
                     </th>
                 </tr>
@@ -109,24 +109,24 @@ function Invoice ({formData, formTable}) {
                 
 
                 {formTable?.length > 0 && formTable?.map((row, index) => {
-            return <tr key={index} class="bg-white border-b ">
+            return <tr key={index} className="bg-white border-b ">
 
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
                     {index + 1}
                     </th>
-                    <td class="px-6 py-4">
+                    <td className="px-6 py-4">
                     {row?.item}
                     </td>
-                    <td class="px-6 py-4">
+                    <td className="px-6 py-4">
                     {row?.desc}
                     </td>
-                    <td class="px-6 py-4">
+                    <td className="px-6 py-4">
                     &#8358;{row?.price}
                     </td>
-                    <td class="px-6 py-4">
+                    <td className="px-6 py-4">
                     {row?.qty}
                     </td>
-                    <td class="px-6 py-4">
+                    <td className="px-6 py-4">
                     &#8358;{row?.qty * row?.price}
                     </td>
             
@@ -134,82 +134,82 @@ function Invoice ({formData, formTable}) {
         })}
 
                 <tr>
-                    <th scope="col" class="px-6 py-4">
+                    <th scope="col" className="px-6 py-4">
                     
                     </th>
-                    <th scope="col" class="px-6 py-4">
+                    <th scope="col" className="px-6 py-4">
                       
                     </th>
-                    <th scope="col" class="px-6 py-4">
+                    <th scope="col" className="px-6 py-4">
                     
                     </th>
-                    <th scope="col" class="px-6 py-4">
+                    <th scope="col" className="px-6 py-4">
                     Sub Total 	&#8358;
                     </th>
-                    <th scope="col" class="px-6 py-4">
+                    <th scope="col" className="px-6 py-4">
                         
                     </th>
-                    <th scope="col" class="px-6 py-4">
+                    <th scope="col" className="px-6 py-4">
                     &#8358;{getSubtotal() } 
                     </th>
                 </tr>
                 <tr>
-                    <th scope="col" class="px-6 py-4">
+                    <th scope="col" className="px-6 py-4">
                     
                     </th>
-                    <th scope="col" class="px-6 py-4">
+                    <th scope="col" className="px-6 py-4">
                       
                     </th>
-                    <th scope="col" class="px-6 py-4">
+                    <th scope="col" className="px-6 py-4">
                     
                     </th>
-                    <th scope="col" class="px-6 py-4">
+                    <th scope="col" className="px-6 py-4">
                     VAT
                     </th>
-                    <th scope="col" class="px-6 py-4">
-                        {formData?.vat}%
+                    <th scope="col" className="px-6 py-4">
+                        {formData.vat}%
                     </th>
-                    <th scope="col" class="px-6 py-4">
+                    <th scope="col" className="px-6 py-4">
                     &#8358;{getVat() }
                     </th>
                 </tr>
                 <tr>
-                    <th scope="col" class="px-6 py-4">
+                    <th scope="col" className="px-6 py-4">
                     
                     </th>
-                    <th scope="col" class="px-6 py-4">
+                    <th scope="col" className="px-6 py-4">
                       
                     </th>
-                    <th scope="col" class="px-6 py-4">
+                    <th scope="col" className="px-6 py-4">
                     
                     </th>
-                    <th scope="col" class="px-6 py-4">
+                    <th scope="col" className="px-6 py-4">
                     Service Charge
                     </th>
-                    <th scope="col" class="px-6 py-4">
-                        {formData?.serviceCharge}%
+                    <th scope="col" className="px-6 py-4">
+                        {formData.serviceCharge}%
                     </th>
-                    <th scope="col" class="px-6 py-4">
+                    <th scope="col" className="px-6 py-4">
                     &#8358;{getServiceCharge() }
                     </th>
                 </tr>
                 <tr>
-                    <th scope="col" class="px-6 py-4">
+                    <th scope="col" className="px-6 py-4">
                     
                     </th>
-                    <th scope="col" class="px-6 py-4">
+                    <th scope="col" className="px-6 py-4">
                       
                     </th>
-                    <th scope="col" class="px-6 py-4">
+                    <th scope="col" className="px-6 py-4">
                     
                     </th>
-                    <th scope="col" class="px-6 py-4 border-t-2 border-t-orange-500">
+                    <th scope="col" className="px-6 py-4 border-t-2 border-t-orange-500">
                     Net Total 	&#8358;
                     </th>
-                    <th scope="col" class="px-6 py-4 border-t-2 border-t-orange-500">
+                    <th scope="col" className="px-6 py-4 border-t-2 border-t-orange-500">
 
                     </th>
-                    <th scope="col" class="px-6 py-4 border-t-2 border-t-orange-500">
+                    <th scope="col" className="px-6 py-4 border-t-2 border-t-orange-500">
                     &#8358; {getNetTotal() }
                     </th>
                 </tr>
@@ -243,6 +243,7 @@ function Invoice ({formData, formTable}) {
     
     
     </div>
+    );
 }
 
 export default Invoice;

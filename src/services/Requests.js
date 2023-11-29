@@ -30,7 +30,7 @@ Requests.Login = async (email, password) => {
 Requests.InvoiceList = async (url) => {
     try {
         let res = await Request.get(url ? url : endpoints.invoiceList);
-        return res.data.data;
+        return res.data;
 
     } catch (error) {
         checkAuth(error);
