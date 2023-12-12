@@ -192,7 +192,15 @@ function InvoiceView() {
                 })}
 
               <tr>
-                <th scope="col" className="px-6 py-4"></th>
+                <th scope="col" className="px-6 py-4">
+                <p className="text-left w-60 h-8 text-xs">
+                    Note: Kindly pay to the Account number provided in the
+                    invoice, kindly share payment receipt after payment has been
+                    made. If for any reason a refund is requested,
+                    administrative charge will be deducted before refunds is
+                    made.
+                  </p>
+                </th>
                 <th scope="col" className="px-6 py-4"></th>
                 {/* <th scope="col" className="px-6 py-4"></th> */}
                 <th scope="col" className="px-6 py-4">
@@ -213,12 +221,20 @@ function InvoiceView() {
                 <th scope="col" className="px-6 py-4">
                   {invoice?.vat}%
                 </th>
-                <th scope="col" className="px-6 py-4">
+                <th scope="col" className="px-6 py-4 ">
                   &#8358;{parseFloat(getVat().toFixed(2)).toLocaleString()}
                 </th>
               </tr>
               <tr>
-                <th scope="col" className="px-6 py-4"></th>
+                <th scope="col" className="px-6 py-4">
+                {/* <p className="text-left w-60 h-8 text-xs">
+                    Note: Kindly pay to the Account number provided in the
+                    invoice, kindly share payment receipt after payment has been
+                    made. If for any reason a refund is requested,
+                    administrative charge will be deducted before refunds is
+                    made.
+                  </p> */}
+                </th>
                 <th scope="col" className="px-6 py-4"></th>
                 {/* <th scope="col" className="px-6 py-4"></th> */}
                 <th scope="col" className="px-6 py-4">
@@ -234,14 +250,13 @@ function InvoiceView() {
               </tr>
               <tr className="">
                 <th scope="col" className="">
-                  <p className="text-xs">Note:</p>
-                  <p className="text-left w-60 h-8 text-xs">
+                  {/* <p className="text-left w-60 h-8 text-xs">
                     Note: Kindly pay to the Account number provided in the
                     invoice, kindly share payment receipt after payment has been
                     made. If for any reason a refund is requested,
                     administrative charge will be deducted before refunds is
                     made.
-                  </p>
+                  </p> */}
                 </th>
                 <th scope="col" className="px-6 py-4"></th>
                 {/* <th scope="col" className="px-6 py-4"></th> */}
