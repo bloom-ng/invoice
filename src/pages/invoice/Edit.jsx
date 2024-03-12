@@ -6,6 +6,8 @@ function InvoiceUpdate() {
 	const [formData, setFormData] = React.useState({
 		vat: 7.5,
 		service_charge: 10,
+		currency: "₦",
+		discount: 0,
 	});
 	const [lineItems, setLineItems] = React.useState([
 		{ item: "", desc: "", qty: "", price: "" },

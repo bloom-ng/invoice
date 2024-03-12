@@ -228,8 +228,8 @@ function InvoiceView() {
 									<div>SUB TOTAL LESS DISCOUNT</div>
 									<div>VAT</div>
 									<div>SERVICE CHARGE</div>
-									<div>DEPOSIT REQUESTED</div>
-									<div>DEPOSIT DUE</div>
+									{/* <div>DEPOSIT REQUESTED</div>
+									<div>DEPOSIT DUE</div> */}
 								</div>
 								<div className="flex flex-col gap-4">
 									<div>-</div>
@@ -237,8 +237,8 @@ function InvoiceView() {
 									<div>-</div>
 									<div>{invoice?.vat}%</div>
 									<div>{invoice?.service_charge}%</div>
-									<div>-</div>
-									<div>-</div>
+									{/* <div>-</div>
+									<div>-</div> */}
 								</div>
 								<div className="flex flex-col gap-4">
 									<div className="font-semibold">
@@ -267,7 +267,7 @@ function InvoiceView() {
 											getServiceCharge().toFixed(2)
 										).toLocaleString()}
 									</div>
-									<div>
+									{/* <div>
 										{invoice?.currency}{" "}
 										{parseFloat(
 											getNetTotal().toFixed(2)
@@ -278,7 +278,7 @@ function InvoiceView() {
 										{parseFloat(
 											getNetTotal().toFixed(2)
 										).toLocaleString()}
-									</div>
+									</div> */}
 								</div>
 							</div>
 
