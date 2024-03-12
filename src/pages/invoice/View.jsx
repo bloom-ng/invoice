@@ -209,7 +209,7 @@ function InvoiceView() {
 						</tbody>
 					</table>
 					<div className="flex items-center justify-between">
-						<div className="basis-1/5 self-start">
+						<div className="basis-2/5 self-start">
 							<p className="text-xs mt-5 font-bold self-start">
 								Note: Kindly pay to the Account number provided
 								in the invoice, kindly share payment receipt
@@ -218,7 +218,7 @@ function InvoiceView() {
 								be deducted before refunds is made.
 							</p>
 						</div>
-						<div className="basis-4/5 w-full items-center justify-center flex-col self-end">
+						<div className="basis-3/5 w-full items-center justify-center flex-col self-end">
 							<div className="flex justify-between items-center gap-2 p-4 text-sm">
 								<div className="flex flex-col gap-4">
 									<div className="font-semibold">
