@@ -43,11 +43,13 @@ function InvoiceView() {
 	};
 
 	const getVat = () => {
-		return (getSubtotal() * invoice.vat) / 100;
+		return ((getSubtotal() - invoice.discount) * invoice.vat) / 100;
 	};
 
 	const getServiceCharge = () => {
-		return (getSubtotal() * invoice.service_charge) / 100;
+		return (
+			((getSubtotal() - invoice.discount) * invoice.service_charge) / 100
+		);
 	};
 
 	const getNetTotal = () => {
@@ -158,13 +160,13 @@ function InvoiceView() {
                   Description
                 </th> */}
 								<th scope="col" className="px-6 py-3">
-									Unit Price &#8358;
+									Unit Price {invoice?.currency}
 								</th>
 								<th scope="col" className="px-6 py-3">
 									Qty
 								</th>
 								<th scope="col" className="px-6 py-3">
-									Total &#8358;
+									Total {invoice?.currency}
 								</th>
 							</tr>
 						</thead>
@@ -187,7 +189,7 @@ function InvoiceView() {
 											</td>
 											{/* <td className="px-6 py-4">{row?.desc}</td> */}
 											<td className="px-6 py-4">
-												&#8358;
+												{invoice?.currency}
 												{Number(
 													row?.price
 												).toLocaleString()}
@@ -196,7 +198,7 @@ function InvoiceView() {
 												{row?.qty}
 											</td>
 											<td className="px-6 py-4">
-												&#8358;
+												{invoice?.currency}
 												{(
 													row?.qty * row?.price
 												).toLocaleString()}
@@ -207,7 +209,7 @@ function InvoiceView() {
 						</tbody>
 					</table>
 					<div className="flex items-center justify-between">
-						<div className="basis-2/4 self-start">
+						<div className="basis-1/5 self-start">
 							<p className="text-xs mt-5 font-bold self-start">
 								Note: Kindly pay to the Account number provided
 								in the invoice, kindly share payment receipt
@@ -216,42 +218,77 @@ function InvoiceView() {
 								be deducted before refunds is made.
 							</p>
 						</div>
-						<div className="font-semibold basis-3/5 w-full items-center justify-center flex-col self-end">
-							<div className="flex items-center justify-between">
-								<p className="px-6 py-4">SUB TOTAL</p>
-								<p className="px-6 py-4">
-									&#8358;{getSubtotal().toLocaleString()}
-								</p>
-							</div>
-							<div className="flex items-center justify-between">
-								<p className="px-6 py-4">VAT</p>
-								<div className="px-6 py-4">{invoice?.vat}%</div>
-								<div className="px-6 py-4">
-									&#8358;
-									{parseFloat(
-										getVat().toFixed(2)
-									).toLocaleString()}
+						<div className="basis-4/5 w-full items-center justify-center flex-col self-end">
+							<div className="flex justify-between items-center gap-2 p-4 text-sm">
+								<div className="flex flex-col gap-4">
+									<div className="font-semibold">
+										SUB TOTAL
+									</div>
+									<div>DISCOUNT</div>
+									<div>SUB TOTAL LESS DISCOUNT</div>
+									<div>VAT</div>
+									<div>SERVICE CHARGE</div>
+									<div>DEPOSIT REQUESTED</div>
+									<div>DEPOSIT DUE</div>
+								</div>
+								<div className="flex flex-col gap-4">
+									<div>-</div>
+									<div>-</div>
+									<div>-</div>
+									<div>{invoice?.vat}%</div>
+									<div>{invoice?.service_charge}%</div>
+									<div>-</div>
+									<div>-</div>
+								</div>
+								<div className="flex flex-col gap-4">
+									<div className="font-semibold">
+										{invoice?.currency}
+										{getSubtotal().toLocaleString()}
+									</div>
+									<div>
+										{invoice?.currency}
+										{invoice?.discount}
+									</div>
+									<div>
+										{invoice?.currency}
+										{(
+											getSubtotal() - invoice?.discount
+										).toLocaleString()}
+									</div>
+									<div>
+										{invoice?.currency}
+										{parseFloat(
+											getVat().toFixed(2)
+										).toLocaleString()}
+									</div>
+									<div>
+										{invoice?.currency}
+										{parseFloat(
+											getServiceCharge().toFixed(2)
+										).toLocaleString()}
+									</div>
+									<div>
+										{invoice?.currency}{" "}
+										{parseFloat(
+											getNetTotal().toFixed(2)
+										).toLocaleString()}
+									</div>
+									<div>
+										{invoice?.currency}{" "}
+										{parseFloat(
+											getNetTotal().toFixed(2)
+										).toLocaleString()}
+									</div>
 								</div>
 							</div>
-							<div className="flex items-center justify-between">
-								<div className="px-6 py-4">SERVICE CHARGE</div>
-								<div className="px-6 py-4">
-									{invoice?.service_charge}%
-								</div>
-								<div className="px-6 py-4">
-									&#8358;
-									{parseFloat(
-										getServiceCharge().toFixed(2)
-									).toLocaleString()}
-								</div>
-							</div>
+
 							<div className="flex justify-between w-full bg-[#ff8100]">
 								<div className="px-6 py-4 text-white font-bold">
 									TOTAL DUE:
 								</div>
 
 								<div className="px-6 py-4 text-white font-bold">
-									&#8358;{" "}
+									{invoice?.currency}{" "}
 									{parseFloat(
 										getNetTotal().toFixed(2)
 									).toLocaleString()}
@@ -266,7 +303,7 @@ function InvoiceView() {
         <p className="mx-4">Bloom Digital Media + (234) 7086278644</p>
         <p>Email- info@bloomdigitmedia.com</p>
     </div> */}
-				<div className="my-20">
+				<div className="mt-10 mb-5">
 					<p className="font-bold">THANKS FOR YOUR PATRONAGE!</p>
 				</div>
 			</div>
