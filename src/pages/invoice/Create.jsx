@@ -52,7 +52,7 @@ function InvoiceCreate({}) {
 		try {
 			setLoading(true);
 			let res = await Requests.InvoiceCreate(data);
-			navigate("/");
+			navigate("/invoices");
 		} catch (error) {
 			alert("Something went wrong");
 			setLoading(false);
@@ -65,7 +65,7 @@ function InvoiceCreate({}) {
 				<div className="my-4 flex justify-start">
 					<button
 						className="uppercase shadow px-2 text-blue-700 hover:bg-slate-100"
-						onClick={() => navigate("/")}
+						onClick={() => navigate("/invoices")}
 					>
 						{" "}
 						Invoices

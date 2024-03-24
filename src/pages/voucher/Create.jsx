@@ -1,20 +1,27 @@
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Requests from "../../services/Requests";
 
-function InvoiceUpdate() {
+function VoucherCreate({}) {
 	const [formData, setFormData] = React.useState({
-		vat: 7.5,
-		service_charge: 10,
+		place: "",
+		expense_head: "",
+		month: "",
+		date: "",
+		beneficiary: "",
+		amount_words: "",
+		cash_cheque_no: "0",
+		prepared_by: "",
+		examined_by: "",
+		authorized_for_payment: "",
+		date_prepared: "",
 		currency: "₦",
-		discount: 0,
 	});
 	const [lineItems, setLineItems] = React.useState([
-		{ item: "", desc: "", qty: "", price: "" },
+		{ date: "", desc: "", price: "" },
 	]);
 	const [loading, setLoading] = React.useState(false);
 	const navigate = useNavigate();
-	const params = useParams();
 
 	const handleChange = (formKey, value) => {
 		setFormData((preState) => {
@@ -32,7 +39,7 @@ function InvoiceUpdate() {
 
 	const addTableRow = (e) => {
 		setLineItems((preState) => {
-			return [...preState, { item: "", desc: "", qty: "", price: "" }];
+			return [...preState, { date: "", desc: "", price: "" }];
 		});
 	};
 	const removeItem = (removeIndex) => {
@@ -41,36 +48,16 @@ function InvoiceUpdate() {
 		});
 	};
 
-	React.useEffect(() => {
-		(async () => {
-			await getInvoice(params?.id);
-		})();
-	}, []);
-
-	const getInvoice = async (id) => {
-		try {
-			let res = await Requests.InvoiceView(id);
-			console.log(
-				"res invoice :>> ",
-				res,
-				console.log("res.line_items :>> ", JSON.parse(res.line_items))
-			);
-			setFormData({ ...res, line_items: JSON.parse(res.line_items) });
-
-			setLineItems(JSON.parse(res.line_items));
-		} catch (error) {}
-	};
-
-	const updateInvoice = async () => {
+	const createVoucher = async () => {
 		let data = {
 			...formData,
 			line_items: JSON.stringify(lineItems),
 		};
 
+		let res = await Requests.VoucherCreate(data);
 		try {
 			setLoading(true);
-			let res = await Requests.InvoiceUpdate(data, params?.id);
-			navigate("/invoices");
+			navigate("/vouchers");
 		} catch (error) {
 			alert("Something went wrong");
 			setLoading(false);
@@ -83,59 +70,24 @@ function InvoiceUpdate() {
 				<div className="my-4 flex justify-start">
 					<button
 						className="uppercase shadow px-2 text-blue-700 hover:bg-slate-100"
-						onClick={() => navigate("/invoices")}
+						onClick={() => navigate("/vouchers")}
 					>
 						{" "}
-						Invoices
+						Vouchers
 					</button>
 				</div>
 
-				<div className="text-2xl text-gray-700 my-4">Edit Invoice</div>
+				<div className="text-2xl text-gray-700 my-4">
+					Create Voucher
+				</div>
 
 				<div className="mb-2">
-					<label htmlFor=""> VAT (%)</label>
-					<input
-						className="border border-gray-300 mx-2 text-gray-900 text-sm rounded p-0.5"
-						type="number"
-						name="vat"
-						defaultValue={formData?.vat}
-						onChange={(e) =>
-							handleChange(e.target.name, e.target.value)
-						}
-					/>
-				</div>
-				<div className="mb-2">
-					<label htmlFor=""> Service Charge(%)</label>
-					<input
-						className="border border-gray-300 mx-2 text-gray-900 text-sm rounded p-0.5"
-						type="number"
-						name="service_charge"
-						defaultValue={formData?.service_charge}
-						onChange={(e) =>
-							handleChange(e.target.name, e.target.value)
-						}
-					/>
-				</div>
-				<div className="mb-2">
-					<label htmlFor="">Discount</label>
-					<input
-						className="border border-gray-300 mx-2 text-gray-900 text-sm rounded p-0.5"
-						type="number"
-						name="discount"
-						defaultValue={formData?.discount}
-						onChange={(e) =>
-							handleChange(e.target.name, e.target.value)
-						}
-						required
-					/>
-				</div>
-				<div className="mb-2">
-					<label htmlFor=""> Currency</label>
+					<label htmlFor="">Place</label>
 					<input
 						className="border border-gray-300 mx-2 text-gray-900 text-sm rounded p-0.5"
 						type="text"
-						name="currency"
-						defaultValue={formData?.currency}
+						name="place"
+						defaultValue={formData?.place}
 						onChange={(e) =>
 							handleChange(e.target.name, e.target.value)
 						}
@@ -143,7 +95,33 @@ function InvoiceUpdate() {
 					/>
 				</div>
 				<div className="mb-2">
-					<label htmlFor="">Date:</label>
+					<label htmlFor="">Expense Head</label>
+					<input
+						className="border border-gray-300 mx-2 text-gray-900 text-sm rounded p-0.5"
+						type="text"
+						name="expense_head"
+						defaultValue={formData?.expense_head}
+						onChange={(e) =>
+							handleChange(e.target.name, e.target.value)
+						}
+						required
+					/>
+				</div>
+				<div className="mb-2">
+					<label htmlFor="">Month</label>
+					<input
+						className="border border-gray-300 mx-2 text-gray-900 text-sm rounded p-0.5"
+						type="text"
+						name="month"
+						defaultValue={formData?.month}
+						onChange={(e) =>
+							handleChange(e.target.name, e.target.value)
+						}
+						required
+					/>
+				</div>
+				<div className="mb-2">
+					<label htmlFor="">Date</label>
 					<input
 						className="border border-gray-300 mx-2 text-gray-900 text-sm rounded p-0.5"
 						type="date"
@@ -152,12 +130,40 @@ function InvoiceUpdate() {
 						onChange={(e) =>
 							handleChange(e.target.name, e.target.value)
 						}
+						required
+					/>
+				</div>
+				<div className="mb-2">
+					<label htmlFor="">Beneficiary</label>
+					<input
+						className="border border-gray-300 mx-2 text-gray-900 text-sm rounded p-0.5"
+						type="text"
+						name="beneficiary"
+						defaultValue={formData?.beneficiary}
+						onChange={(e) =>
+							handleChange(e.target.name, e.target.value)
+						}
+						required
+					/>
+				</div>
+				<div className="mb-2">
+					<label htmlFor="amount_words">Amount in Words:</label>
+					<input
+						className="border border-gray-300 mx-2 text-gray-900 text-sm rounded p-0.5"
+						type="text"
+						name="amount_words"
+						id="amount_words"
+						defaultValue={formData?.amount_words}
+						onChange={(e) =>
+							handleChange(e.target.name, e.target.value)
+						}
+						required
 					/>
 				</div>
 			</div>
 
 			{/* BILL TO */}
-			<div className="m-5">
+			{/* <div className="m-5">
 				<h3 className="my-2 font-bold">Billed To</h3>
 				<div className="mb-2">
 					<label htmlFor="">Address Line 1</label>
@@ -169,6 +175,7 @@ function InvoiceUpdate() {
 						onChange={(e) =>
 							handleChange(e.target.name, e.target.value)
 						}
+						required
 					/>
 				</div>
 				<div className="mb-2">
@@ -195,10 +202,10 @@ function InvoiceUpdate() {
 						}
 					/>
 				</div>
-			</div>
+			</div> */}
 
 			{/* PAYABLE TO */}
-			<div className="m-5">
+			{/* <div className="m-5">
 				<h3 className="my-2 font-bold">Payable To</h3>
 				<div className="mb-2">
 					<label htmlFor="">Account Name</label>
@@ -236,7 +243,7 @@ function InvoiceUpdate() {
 						}
 					/>
 				</div>
-			</div>
+			</div> */}
 
 			{/* ITEMS TABLE */}
 			<div className="m-5">
@@ -244,10 +251,9 @@ function InvoiceUpdate() {
 					<thead>
 						<tr className="font-bold text-xl">
 							<th>#</th>
-							<th>Item</th>
-							<th>Desc.</th>
+							<th>Date</th>
+							<th>Detailed Description.</th>
 							<th>Unit Price</th>
-							<th>Qty</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -258,12 +264,12 @@ function InvoiceUpdate() {
 									<td>
 										<input
 											className="border border-gray-300 mx-2 text-gray-900 text-sm rounded p-0.5"
-											type="text"
-											defaultValue={row?.item}
+											type="date"
+											defaultValue={row?.date}
 											onChange={(e) =>
 												handleCellChange(
 													index,
-													"item",
+													"date",
 													e.target.value
 												)
 											}
@@ -297,20 +303,7 @@ function InvoiceUpdate() {
 											}
 										/>
 									</td>
-									<td>
-										<input
-											className="border border-gray-300 mx-2 text-gray-900 text-sm rounded p-0.5"
-											type="number"
-											defaultValue={row?.qty}
-											onChange={(e) =>
-												handleCellChange(
-													index,
-													"qty",
-													e.target.value
-												)
-											}
-										/>
-									</td>
+
 									<td>
 										<button
 											className="text-red-500 bg-gray-200 hover:bg-gray-300 font-medium rounded text-sm px-5 py-0.5 mr-2 mb-2"
@@ -332,12 +325,102 @@ function InvoiceUpdate() {
 					Add Row
 				</button>
 
+				<div className="my-5">
+					<div className="mb-2">
+						<label htmlFor="cash_cheque_no">Cash/Cheque No:</label>
+						<input
+							className="border border-gray-300 mx-2 text-gray-900 text-sm rounded p-0.5"
+							type="text"
+							name="cash_cheque_no"
+							id="cash_cheque_no"
+							defaultValue={formData?.cash_cheque_no}
+							onChange={(e) =>
+								handleChange(e.target.name, e.target.value)
+							}
+							required
+						/>
+					</div>
+					<div className="mb-2">
+						<label htmlFor="cash_cheque_no">Prepared By:</label>
+						<input
+							className="border border-gray-300 mx-2 text-gray-900 text-sm rounded p-0.5"
+							type="text"
+							name="prepared_by"
+							id="prepared_by"
+							defaultValue={formData?.prepared_by}
+							onChange={(e) =>
+								handleChange(e.target.name, e.target.value)
+							}
+							required
+						/>
+					</div>
+					<div className="mb-2">
+						<label htmlFor="cash_cheque_no">Examined By:</label>
+						<input
+							className="border border-gray-300 mx-2 text-gray-900 text-sm rounded p-0.5"
+							type="text"
+							name="examined_by"
+							id="examined_by"
+							defaultValue={formData?.examined_by}
+							onChange={(e) =>
+								handleChange(e.target.name, e.target.value)
+							}
+							required
+						/>
+					</div>
+
+					<div className="mb-2">
+						<label htmlFor="cash_cheque_no">
+							Authorized For Payment:
+						</label>
+						<input
+							className="border border-gray-300 mx-2 text-gray-900 text-sm rounded p-0.5"
+							type="text"
+							name="authorized_for_payment"
+							id="authorized_for_payment"
+							defaultValue={formData?.authorized_for_payment}
+							onChange={(e) =>
+								handleChange(e.target.name, e.target.value)
+							}
+							required
+						/>
+					</div>
+					<div className="mb-2">
+						<label htmlFor="cash_cheque_no">Date Prepared:</label>
+						<input
+							className="border border-gray-300 mx-2 text-gray-900 text-sm rounded p-0.5"
+							type="date"
+							name="date_prepared"
+							id="date_prepared"
+							defaultValue={formData?.date_prepared}
+							onChange={(e) =>
+								handleChange(e.target.name, e.target.value)
+							}
+							required
+						/>
+					</div>
+					<div className="mb-2">
+						<label htmlFor="cash_cheque_no">Currency:</label>
+						<input
+							className="border border-gray-300 mx-2 text-gray-900 text-sm rounded p-0.5"
+							type="text"
+							name="currency"
+							id="currency"
+							defaultValue={formData?.currency}
+							onChange={(e) =>
+								handleChange(e.target.name, e.target.value)
+							}
+							required
+						/>
+					</div>
+				</div>
+
 				<div className="mt-8">
 					<button
-						onClick={updateInvoice}
+						onClick={createVoucher}
 						className="bg-orange-200 hover:bg-orange-300  font-medium rounded text-sm px-5 py-0.5 mr-2 mb-2"
 					>
-						{loading ? "Processing..." : "Update"}
+						{loading ? "Processing..." : "Create"}
 					</button>
 				</div>
 			</div>
@@ -345,4 +428,4 @@ function InvoiceUpdate() {
 	);
 }
 
-export default InvoiceUpdate;
+export default VoucherCreate;
