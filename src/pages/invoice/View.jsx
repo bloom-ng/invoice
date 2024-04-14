@@ -215,7 +215,7 @@ function InvoiceView() {
 								in the invoice, kindly share payment receipt
 								after payment has been made. If for any reason a
 								refund is requested, administrative charge will
-								be deducted before refunds is made.
+								be applied before refunds is made.
 							</p>
 						</div>
 						<div className="basis-3/5 w-full items-center justify-center flex-col self-end">
