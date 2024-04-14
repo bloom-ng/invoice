@@ -53,7 +53,7 @@ function InvoiceView() {
 	};
 
 	const getNetTotal = () => {
-		return getSubtotal() + getVat() + getServiceCharge();
+		return getSubtotal() + getVat() + getServiceCharge() - invoice.discount;
 	};
 
 	const getDate = (date) => {
