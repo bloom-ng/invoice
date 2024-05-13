@@ -143,6 +143,27 @@ Requests.CompanyView = async (id) => {
 	}
 };
 
+Requests.GetRequest = async (url) => {
+	try {
+		let res = await Request.get(url);
+		// console.log(res.data.data[0]);
+		return res.data;
+	} catch (error) {
+		checkAuth(error);
+		throw new Error(error);
+	}
+};
+
+Requests.PostRequest = async (url, data) => {
+	try {
+		let res = await Request.post(url, data);
+		return res.data;
+	} catch (error) {
+		checkAuth(error);
+		throw new Error(error);
+	}
+};
+
 function checkAuth(error) {
 	if (error.response.status == 401 || error.response.status == 403) {
 		return (window.location.href = "/login");
