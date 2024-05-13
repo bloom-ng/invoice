@@ -20,6 +20,8 @@ const VoucherList = () => {
 		total: 0,
 	});
 
+	const [searchQuery, setSearchQuery] = React.useState("");
+
 	const { state: authState, dispatch } = React.useContext(AuthContext);
 	const navigate = useNavigate();
 
@@ -45,6 +47,53 @@ const VoucherList = () => {
 		})();
 	}, [load]);
 
+	const goNext = async () => {
+		const result = await Requests.GetRequest(pagination.nextUrl);
+		setData({ ...data, list: result?.data });
+		setPagination({
+			...pagination,
+			currentPage: result?.current_page,
+			prevUrl: result?.prev_page_url,
+			nextUrl: result?.next_page_url,
+			firstUrl: result?.first_page_url,
+			lastUrl: result?.last_page_url,
+			links: result?.links,
+			total: result?.total,
+		});
+	};
+	const goBack = async () => {
+		const result = await Requests.GetRequest(pagination.prevUrl);
+		setData({ ...data, list: result?.data });
+		setPagination({
+			...pagination,
+			currentPage: result?.current_page,
+			prevUrl: result?.prev_page_url,
+			nextUrl: result?.next_page_url,
+			firstUrl: result?.first_page_url,
+			lastUrl: result?.last_page_url,
+			links: result?.links,
+			total: result?.total,
+		});
+	};
+
+	const search = async () => {
+		const queryParams = new URLSearchParams({ search: searchQuery });
+		const result = await Requests.InvoiceList(
+			endpoints.invoiceList + "?" + queryParams
+		);
+		setData({ ...data, list: result?.data });
+		setPagination({
+			...pagination,
+			currentPage: result?.current_page,
+			prevUrl: result?.prev_page_url,
+			nextUrl: result?.next_page_url,
+			firstUrl: result?.first_page_url,
+			lastUrl: result?.last_page_url,
+			links: result?.links,
+			total: result?.total,
+		});
+	};
+
 	const deleteVoucher = async (id) => {
 		if (!confirm("Proceed to delete Voucher?")) return;
 
@@ -66,7 +115,24 @@ const VoucherList = () => {
 	return (
 		<>
 			<div className="px-8 py-8">
-				<div className="flex justify-end">
+				<div className="flex justify-between">
+					<div className="flex items-center">
+						<input
+							className="rounded-l-full border-gray-200 py-2 px-6 focus:border-none active:border-none"
+							type="text"
+							onChange={(event) =>
+								setSearchQuery(event.target.value)
+							}
+							name=""
+							id=""
+						/>
+						<button
+							onClick={search}
+							className="rounded-r-full px-2 py-2 bg-orange-600 text-white font-medium border border-orange-600"
+						>
+							Search
+						</button>
+					</div>
 					<button
 						className="uppercase shadow px-2 py-2 text-white bg-red-500 hover:bg-red-600"
 						onClick={() => logout()}
@@ -169,6 +235,39 @@ const VoucherList = () => {
 							})}
 					</tbody>
 				</table>
+				<div className="flex items-center justify-center gap-6 w-full">
+					<button
+						disabled={pagination.prevUrl == null}
+						onClick={goBack}
+						className={
+							pagination.prevUrl
+								? "opacity-100 shadow-sm border rounded px-6 py-2 my-4 font-medium pointer"
+								: "opacity-20 shadow-sm border rounded px-6 py-2 my-4 font-medium pointer"
+						}
+					>
+						Prev
+					</button>
+					{/* {pagination.links.map((link, index) => (
+						<button
+							className="hover:shadow-sm border rounded px-6 py-2 my-4 font-medium pointer"
+							onClick={() => goTo(link.url)}
+							key={index}
+						>
+							{link.label}
+						</button>
+					))} */}
+					<button
+						disabled={pagination.nextUrl == null}
+						onClick={goNext}
+						className={
+							pagination.nextUrl
+								? "opacity-100 shadow-sm border rounded px-6 py-2 my-4 font-medium pointer"
+								: "opacity-20 shadow-sm border rounded px-6 py-2 my-4 font-medium pointer"
+						}
+					>
+						Next
+					</button>
+				</div>
 			</div>
 		</>
 	);
