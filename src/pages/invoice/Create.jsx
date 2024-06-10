@@ -7,8 +7,8 @@ function InvoiceCreate({}) {
 		vat: 7.5,
 		service_charge: 10,
 		account_name: "BLOOM DIGITAL MEDIA LTD",
-		account_number: 5600579630,
-		bank_name: "Fidelity Bank PLC",
+		account_number: "0040069713",
+		bank_name: "Premium Trust Bank",
 		currency: "₦",
 		discount: 0,
 	});
