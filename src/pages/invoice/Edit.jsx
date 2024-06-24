@@ -3,6 +3,19 @@ import { useNavigate, useParams } from "react-router-dom";
 import Requests from "../../services/Requests";
 
 function InvoiceUpdate() {
+	const [accountArray, setAccountArray] = React.useState([
+		{
+			account_name: "BLOOM DIGITAL MEDIA LTD",
+			account_number: "0040069713",
+			bank_name: "Premium Trust Bank",
+		},
+		{
+			account_name: "BLOOM DIGITAL MEDIA",
+			account_number: "5600579630",
+			bank_name: "Fidelity Bank",
+		},
+	]);
+
 	const [formData, setFormData] = React.useState({
 		vat: 7.5,
 		service_charge: 10,
@@ -200,6 +213,33 @@ function InvoiceUpdate() {
 			{/* PAYABLE TO */}
 			<div className="m-5">
 				<h3 className="my-2 font-bold">Payable To</h3>
+				<select
+					className="mb-2"
+					onChange={(e) => {
+						const selectedAccount = accountArray[e.target.value];
+						// handleChange(
+						// 	"account_name",
+						// 	selectedAccount.account_name
+						// );
+						// handleChange("bank_name", selectedAccount.bank_name);
+						// handleChange(
+						// 	"account_number",
+						// 	selectedAccount.account_number
+						// );
+						setFormData({
+							...formData,
+							account_name: selectedAccount.account_name,
+							bank_name: selectedAccount.bank_name,
+							account_number: selectedAccount.account_number,
+						});
+					}}
+				>
+					{accountArray.map((account, i) => (
+						<option key={i} value={i}>
+							{account.bank_name}
+						</option>
+					))}
+				</select>
 				<div className="mb-2">
 					<label htmlFor="">Account Name</label>
 					<input

@@ -316,10 +316,6 @@ function InvoiceView() {
 						<p className="mt-4">{invoice?.account_name}</p>
 						<p>{invoice?.bank_name}</p>
 						<p>{invoice?.account_number}</p>
-						<p className="my-4">OR</p>
-						<p className="">BLOOM DIGITAL MEDIA</p>
-						<p>Fidelity Bank</p>
-						<p>5600579630</p>
 					</div>
 					<div className="text-white mr-10 mt-6">
 						<span className="text-white font-bold">
