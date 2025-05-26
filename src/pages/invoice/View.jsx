@@ -77,88 +77,69 @@ function InvoiceView() {
 	}
 
 	return (
-		<div className="flex flex-col h-screen">
-			<div className="py-4 px-8 flex-grow">
-				<div className="flex justify-between">
-					{/* BLOOM LOGO */}
-					<div>
-						<div className="pr-20 mr-1">
-							<BloomLogo />
-						</div>
-						<div className="flex-col pr-8  mt-10">
-							<p className=" font-semibold">
-								Bloom Digital Media Ltd,
-							</p>
-							<p>{company?.address_line_1}</p>
-							<p>{company?.address_line_2}</p>
-							<p>{company?.address_line_3}</p>
+		<>
+		<div className="flex w-full flex-row">
+			<div className="flex flex-row w-1/15 h-300vh">
+				<div className="bg-white w-2/5"></div>
+				<div className="flex flex-col w-3/5">
+					<div className="bg-[#ffe6cd] h-1/5"></div>
+					<div className="bg-[#FFCD9A] h-1/5"></div>
+					<div className="bg-[#FFB367] h-1/5"></div>
+					<div className="bg-[#FF9934] h-1/5"></div>
+					<div className="bg-[#ff8100] h-1/5"></div>
+				</div>
+			</div>
+			<div>
+				
+				{/* <div className="flex flex-col w-14/15"> */}
+						
+				<div className="flex flex-col w-full  px-14">
+					<div className="flex flex-col justify-between z-10">
+						<div className="-ml-4">
+						<BloomLogo />
 						</div>
 					</div>
-
-					<div className="">
-						<div className="mt-5">
+					
+					<div className="flex flex-col z-0 -mt-28">
 							<div>
-								<span className=" pb-0 font-extrabold text-5xl text-[#ff8100] uppercase">
-									Invoice &nbsp;&nbsp;&nbsp;
-								</span>
-								<p className="">{getDate(invoice?.date)}</p>
-							</div>
-							<div className="flex-col mt-8">
-								<p className="font-normal my-1">
-									Invoice No: INV
-									{mainDate(invoice?.created_at)}
-									{invoice?.id}
-									{}
-								</p>
-								<div className="flex items-center gap-2 mt-2">
-									<p className="font-semibold">To:</p>
-									<p>{invoice?.billed_to_line_1}</p>
+								<div className="flex flex-row-reverse">
+								<div className="text-[60px] font-bold text-[#ff8100]">
+									<u>INVOICE</u>
 								</div>
-								<p>{invoice?.billed_to_line_2}</p>
+							</div>
+							<div className="flex flex-row-reverse gap-10 leading-[16px]">
+								<div className="">
+									<p className="font-bold">Invoice No:
+									</p>
+									<p>INV
+										{mainDate(invoice?.created_at)}
+										{invoice?.id}
+									</p>
+								</div>
+								<div className="">
+									<p className="font-bold">Date</p>
+									<p>{getDate(invoice?.date)}</p>
+								</div>
+							</div>
+							<div className="flex flex-col leading-[18px] justify-start text-base">
+								<p className="font-bold leading-[22px]">{invoice?.billed_to_line_1}</p>
+								<p className="">{invoice?.billed_to_line_2}</p>
 								<p>{invoice?.billed_to_line_3}</p>
 							</div>
 						</div>
 					</div>
+					
 				</div>
-
-				<div className="flex justify-between font-bold mt-2">
-					{/* <div className="flex-col">
-          <p className="font-normal my-1">
-            Invoice No: INV{mainDate(invoice?.created_at)}
-            {invoice?.id}
-            {}
-          </p>
-          <p className="font-normal mb-1">Billed To:</p>
-          <p>{invoice?.billed_to_line_1}</p>
-          <p>{invoice?.billed_to_line_2}</p>
-          <p>{invoice?.billed_to_line_3}</p>
-        </div> */}
-					<div className="flex-col mt-2 pr-8 ">
-						{/* <p>{company?.address_line_1}</p>
-          <p>{company?.address_line_2}</p>
-          <p>{company?.address_line_3}</p> */}
-
-						{/* <p className="mt-6">{getDate(invoice?.date)}</p> */}
-					</div>
-				</div>
-
-				<div className="border-b-[#ff8100] border-b-8 pt-8 pb-0"></div>
-
-				<div></div>
-
-				<div className="relative">
+				<div className="pt-10">
 					<table className="w-full text-sm text-left text-black ">
-						<thead className="text-xs text-white uppercase bg-[#ff8100] ">
+						<thead className="text-[14px] text-black font-bold border-b border-b-[#C63028]">
 							<tr>
-								<th scope="col" className="px-3 py-3">
-									#
+								<th scope="col" className="px-12 py-3 border-b border-b-white">
+									No.
 								</th>
-								<th scope="col" className="px-6 py-3">
+								<th scope="col" className="pr-6 py-3">
 									Item Description
 								</th>
-								{/* <th scope="col" className="px-6 py-3">
-                  Description
-                </th> */}
 								<th scope="col" className="px-6 py-3">
 									Unit Price {invoice?.currency}
 								</th>
@@ -176,15 +157,15 @@ function InvoiceView() {
 									return (
 										<tr
 											key={index}
-											className="bg-white border-b border-black "
+											className="bg-white border-b border-b-[#C63028] "
 										>
 											<th
 												scope="row"
-												className="w-10 px-3 py-4 font-medium text-gray-900 "
+												className="w-10 px-12 text-bold py-4 font-medium border-b border-b-white text-gray-900 "
 											>
-												{index + 1}
+												0{index + 1}
 											</th>
-											<td className="px-6 py-4 w-full">
+											<td className="pr-6 py-4 w-full">
 												{row?.item} <br /> {row?.desc}
 											</td>
 											{/* <td className="px-6 py-4">{row?.desc}</td> */}
@@ -208,60 +189,54 @@ function InvoiceView() {
 								})}
 						</tbody>
 					</table>
-					<div className="flex items-center justify-between">
-						<div className="basis-2/5 self-start">
-							<p className="text-xs mt-5 font-bold self-start">
-								Note: Kindly pay to the Account number provided
-								in the invoice, kindly share payment receipt
-								after payment has been made. If for any reason a
-								refund is requested, administrative charge will
-								be applied before refunds is made.
-							</p>
+					<div className="pt-8 w-full flex">
+						<div className="w-6/15">
+							<div className=""></div>
 						</div>
-						<div className="basis-3/5 w-full items-center justify-center flex-col self-end">
-							<div className="flex justify-between items-center gap-2 p-4 text-sm">
-								<div className="flex flex-col gap-4">
-									<div className="font-semibold">
-										SUB TOTAL
+						<div className="w-9/15 items-center justify-center flex-col self-end">
+							<div className="flex justify-between pb-2 items-center gap-2 text-sm">
+								<div className="flex flex-col z-20">
+									<div className="p-4 font-semibold bg-[#FFCD9A]">
+										Sub Total	
 									</div>
-									<div>DISCOUNT</div>
-									<div>SUB TOTAL LESS DISCOUNT</div>
-									<div>VAT</div>
-									<div>SERVICE CHARGE</div>
+									<div className="p-4 font-semibold bg-[#FFE6CD]">Discount</div>
+									<div className="p-4 font-semibold bg-[#FFCD9A]">Sub Total Less Discount</div>
+									<div className="p-4 font-semibold bg-[#FFE6CD]">VAT</div>
+									<div className="p-4 font-semibold bg-[#FFCD9A]">Service Charge</div>
 									{/* <div>DEPOSIT REQUESTED</div>
 									<div>DEPOSIT DUE</div> */}
 								</div>
-								<div className="flex flex-col gap-4">
-									<div>-</div>
-									<div>-</div>
-									<div>-</div>
-									<div>{invoice?.vat}%</div>
-									<div>{invoice?.service_charge}%</div>
+								<div className="flex flex-col">
+									<div className="p-4 font-semibold -mx-64 text-center  bg-[#FFCD9A]">-</div>
+									<div className="p-4 font-semibold -mx-64 text-center  bg-[#FFE6CD]">-</div>
+									<div className="p-4 font-semibold -mx-64 text-center  bg-[#FFCD9A]">-</div>
+									<div className="p-4 font-semibold -mx-64 text-center  bg-[#FFE6CD]">{invoice?.vat}%</div>
+									<div className="p-4 font-semibold -mx-64 text-center  bg-[#FFCD9A]">{invoice?.service_charge}%</div>
 									{/* <div>-</div>
 									<div>-</div> */}
 								</div>
-								<div className="flex flex-col gap-4">
-									<div className="font-semibold">
+								<div className="flex flex-col">
+									<div className="font-semibold p-4  bg-[#FFCD9A]">
 										{invoice?.currency}
 										{getSubtotal().toLocaleString()}
 									</div>
-									<div>
+									<div className="p-4  bg-[#FFE6CD]">
 										{invoice?.currency}
 										{invoice?.discount}
 									</div>
-									<div>
+									<div className="p-4  bg-[#FFCD9A]">
 										{invoice?.currency}
 										{(
 											getSubtotal() - invoice?.discount
 										).toLocaleString()}
 									</div>
-									<div>
+									<div className="p-4  bg-[#FFE6CD]">
 										{invoice?.currency}
 										{parseFloat(
 											getVat().toFixed(2)
 										).toLocaleString()}
 									</div>
-									<div>
+									<div className="p-4  bg-[#FFCD9A]">
 										{invoice?.currency}
 										{parseFloat(
 											getServiceCharge().toFixed(2)
@@ -284,7 +259,7 @@ function InvoiceView() {
 
 							<div className="flex justify-between w-full bg-[#ff8100]">
 								<div className="px-6 py-4 text-white font-bold">
-									TOTAL DUE:
+									Service Charge:
 								</div>
 
 								<div className="px-6 py-4 text-white font-bold">
@@ -296,37 +271,58 @@ function InvoiceView() {
 							</div>
 						</div>
 					</div>
-					{/* <div className="border-b-orange-500 border-b-8 "></div> */}
+					<div className="pt-12 pb-4 px-12 flex gap-8">
+						<div className="w-9/15">
+						<p className="text-md font-bold">Note: </p>
+						<p className="text-sm self-start">
+							Kindly pay to the Account number provided in the
+							invoice, kindly share payment receipt after
+							payment has been made. If for any reason a refund
+							is requested, administrative charge will be
+							applied before refunds is made.
+						</p>
+						</div>
+						<div className="w-6/15 text-sm">
+							<div className="text-black">
+								<span className="font-bold">
+									PAY TO : &nbsp;&nbsp;&nbsp;
+								</span>
+								<p className="text-md">{invoice?.account_name}</p>
+								<p>{invoice?.bank_name}</p>
+								<p>{invoice?.account_number}</p>
+							</div>
+						</div>
+					</div>
+					<div className=" px-12 pb-6">
+						<div className="flex flex-row text-xs gap-2 justify-between border-t border-t-[#C63028]">
+							<div className="pt-8 pr-32">
+								<p className="text-md font-bold text-black">
+									Thanks For Your Business!
+								</p>
+							</div>
+							<div className="flex flex-col pt-8 items-center gap-2">
+								<img className="w-6" src="/viber.svg" alt="" />
+								<p className="text-md font-semibold">{company?.phone}</p>
+							</div>
+							<div className="flex flex-col pt-8 items-center gap-2">
+								<img className="w-6" src="/link.svg" alt="" />
+								<p className="text-md font-semibold"><a href="https://bloomdigitmedia.com" target="_blank" rel="noopener noreferrer">bloomdigitmedia.com</a></p>
+							</div>
+							<div className="flex flex-col pt-8 items-center gap-2">
+								<img className="w-6" src="/location.svg" alt="" />
+								<p className="text-md font-semibold text-center">{company?.address_line_1} <br /> <span className="text-xs">{company?.address_line_2} {company?.address_line_3}</span> </p>
+							</div>
+						</div>
+						
+					</div>
 				</div>
-
-				{/* <div className="fixed bottom-5 left-20 flex">
-        <p className="mx-4">Bloom Digital Media + (234) 7086278644</p>
-        <p>Email- info@bloomdigitmedia.com</p>
-    </div> */}
-				<div className="mt-10 mb-5">
-					<p className="font-bold">THANKS FOR YOUR PATRONAGE!</p>
-				</div>
+				{/* </div> */}
 			</div>
-			<footer className="">
-				<div className="bg-[#ff8100] flex justify-between">
-					<div className="p-8 text-white">
-						<span className="font-bold uppercase">
-							PAY TO : &nbsp;&nbsp;&nbsp;
-						</span>
-						<p className="mt-4">{invoice?.account_name}</p>
-						<p>{invoice?.bank_name}</p>
-						<p>{invoice?.account_number}</p>
-					</div>
-					<div className="text-white mr-10 mt-6">
-						<span className="text-white font-bold">
-							CONTACT DETAILS:
-						</span>
-						<p className="">{company?.phone}</p>
-						<p>{company?.email}</p>
-					</div>
-				</div>
-			</footer>
+			
+			
 		</div>
+
+		</>
 	);
 }
 
