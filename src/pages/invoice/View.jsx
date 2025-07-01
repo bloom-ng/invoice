@@ -361,11 +361,9 @@ function InvoiceView() {
 										alt=""
 									/>
 									<p className="text-md font-semibold text-center">
-										{company?.address_line_1} <br />{" "}
-										<span className="text-xs">
-											{company?.address_line_2}{" "}
-											{company?.address_line_3}
-										</span>{" "}
+										Plot 91A, 43 Cres,<br />
+										Gwarinpa Estate, Gwarinpa 901108<br />
+										Abuja, Nigeria<br />
 									</p>
 								</div>
 							</div>

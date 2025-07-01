@@ -84,7 +84,7 @@ function InvoiceForm ({formData, setFormData, formTable, setFormTable}) {
                 <input className="border border-gray-300 mx-2 text-gray-900 text-sm rounded p-0.5"  
                         type="text" 
                        name="fromAddressLine1" 
-                       defaultValue={formData?.fromAddressLine1}
+                       value={formData?.fromAddressLine1 || ''}
                        onChange={(e) => handleChange(e.target.name, e.target.value)} />
             </div>
             <div className="mb-2">
@@ -92,7 +92,7 @@ function InvoiceForm ({formData, setFormData, formTable, setFormTable}) {
                 <input className="border border-gray-300 mx-2 text-gray-900 text-sm rounded p-0.5"  
                         type="text" 
                        name="fromAddressLine2" 
-                       defaultValue={formData?.fromAddressLine2}
+                       value={formData?.fromAddressLine2 || ''}
                        onChange={(e) => handleChange(e.target.name, e.target.value)} />
             </div>
             <div className="mb-2">
@@ -100,7 +100,7 @@ function InvoiceForm ({formData, setFormData, formTable, setFormTable}) {
                 <input type="text" 
                         className="border border-gray-300 mx-2 text-gray-900 text-sm rounded p-0.5"  
                        name="fromAddressLine3" 
-                       defaultValue={formData?.fromAddressLine3}
+                       value={formData?.fromAddressLine3 || ''}
                        onChange={(e) => handleChange(e.target.name, e.target.value)} />
             </div>
 
@@ -208,7 +208,7 @@ function InvoiceForm ({formData, setFormData, formTable, setFormTable}) {
                 <input type="text" 
                         className="border border-gray-300 mx-2 text-gray-900 text-sm rounded p-0.5"
                        name="telephone" 
-                       defaultValue={formData?.telephone}
+                       value={formData?.telephone || ''}
                        onChange={(e) => handleChange(e.target.name, e.target.value)} />
             </div>
             <div className="mb-2">
@@ -216,7 +216,7 @@ function InvoiceForm ({formData, setFormData, formTable, setFormTable}) {
                 <input type="text" 
                         className="border border-gray-300 mx-2 text-gray-900 text-sm rounded-lg p-0.5"
                        name="email" 
-                       defaultValue={formData?.email}
+                       value={formData?.email || ''}
                        onChange={(e) => handleChange(e.target.name, e.target.value)} />
             </div>
         </div>
