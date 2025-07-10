@@ -10,6 +10,12 @@ export default {
 	invoiceUpdate: (id) => `${baseURL}invoice/${id}`,
 	invoiceDelete: (id) => `${baseURL}invoice/${id}`,
 
+	receiptList: baseURL + "receipt",
+	receiptCreate: baseURL + "receipt",
+	receiptView: (id) => `${baseURL}receipt/${id}`,
+	receiptUpdate: (id) => `${baseURL}receipt/${id}`,
+	receiptDelete: (id) => `${baseURL}receipt/${id}`,
+
 	voucherList: baseURL + "voucher",
 	voucherCreate: baseURL + "voucher",
 	voucherView: (id) => `${baseURL}voucher/${id}`,

@@ -13,6 +13,12 @@ const HomePage = () => {
 					Invoice
 				</button>
 				<button
+					onClick={() => navigate("/receipts")}
+					className="text-white bg-orange-600 px-6 py-2 hover:bg-white hover:text-orange-600 font-semibold text-4xl"
+				>
+					Receipt
+				</button>
+				<button
 					onClick={() => navigate("/vouchers")}
 					className="text-white bg-orange-600 px-6 py-2 hover:bg-white hover:text-orange-600 font-semibold text-4xl"
 				>

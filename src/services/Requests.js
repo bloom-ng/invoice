@@ -164,6 +164,56 @@ Requests.PostRequest = async (url, data) => {
 	}
 };
 
+Requests.ReceiptList = async (url) => {
+	try {
+		let res = await Request.get(url ? url : endpoints.receiptList);
+		return res.data;
+	} catch (error) {
+		checkAuth(error);
+		throw new Error(error);
+	}
+};
+
+Requests.ReceiptView = async (id) => {
+	try {
+		let res = await Request.get(endpoints.receiptView(id));
+		return res.data.data[0];
+	} catch (error) {
+		checkAuth(error);
+		throw new Error(error);
+	}
+};
+
+Requests.ReceiptCreate = async (data) => {
+	try {
+		let res = await Request.post(endpoints.receiptCreate, data);
+		return res.data;
+	} catch (error) {
+		checkAuth(error);
+		throw new Error(error);
+	}
+};
+
+Requests.ReceiptUpdate = async (data, id) => {
+	try {
+		let res = await Request.put(endpoints.receiptUpdate(id), data);
+		return res.data;
+	} catch (error) {
+		checkAuth(error);
+		throw new Error(error);
+	}
+};
+
+Requests.ReceiptDelete = async (id) => {
+	try {
+		let res = await Request.delete(endpoints.receiptDelete(id));
+		return res.data;
+	} catch (error) {
+		checkAuth(error);
+		throw new Error(error);
+	}
+};
+
 function checkAuth(error) {
 	if (error.response.status == 401 || error.response.status == 403) {
 		return (window.location.href = "/login");

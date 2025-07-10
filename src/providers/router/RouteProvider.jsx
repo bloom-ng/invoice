@@ -8,6 +8,12 @@ import {
 	InvoiceUpdate,
 } from "../../pages/invoice";
 import {
+	ReceiptList,
+	ReceiptView,
+	ReceiptCreate,
+	ReceiptUpdate,
+} from "../../pages/receipt";
+import {
 	VoucherList,
 	VoucherView,
 	VoucherCreate,
@@ -39,6 +45,27 @@ const router = createBrowserRouter([
 	{
 		path: "/invoice/edit/:id",
 		element: <InvoiceUpdate />,
+	},
+	// Receipt routes
+	{
+		path: "/receipts",
+		element: <ReceiptList />,
+	},
+	{
+		path: "/receipt",
+		element: <ReceiptList />,
+	},
+	{
+		path: "/receipt/:id",
+		element: <ReceiptView />,
+	},
+	{
+		path: "/receipt/add",
+		element: <ReceiptCreate />,
+	},
+	{
+		path: "/receipt/edit/:id",
+		element: <ReceiptUpdate />,
 	},
 	{
 		path: "/vouchers",
