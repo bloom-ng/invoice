@@ -249,7 +249,7 @@ function Edit() {
 				>
 					{accountArray.map((account, i) => (
 						<option key={i} value={i}>
-							{account.bank_name}
+							{account.account_name}
 						</option>
 					))}
 				</select>
