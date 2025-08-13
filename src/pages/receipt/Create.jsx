@@ -7,6 +7,11 @@ function Create({}) {
 	const mode = location.pathname.includes("receipt") ? "receipt" : "invoice";
 	const [accountArray, setAccountArray] = React.useState([
 		{
+			account_name: "BLOOM DIGITAL MEDIA (Fidelity)",
+			account_number: "5600579630",
+			bank_name: "Fidelity Bank",
+		},
+		{
 			account_name: "Bloom Digital media ltd (Billing)",
 			account_number: "0126532175",
 			bank_name: "Wema Bank",

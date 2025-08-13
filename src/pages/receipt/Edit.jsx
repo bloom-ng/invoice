@@ -11,11 +11,11 @@ function Edit() {
 		// 	account_number: "0040069713",
 		// 	bank_name: "Premium Trust Bank",
 		// },
-		// {
-		// 	account_name: "BLOOM DIGITAL MEDIA",
-		// 	account_number: "5600579630",
-		// 	bank_name: "Fidelity Bank",
-		// },
+		{
+			account_name: "BLOOM DIGITAL MEDIA (Fidelity)",
+			account_number: "5600579630",
+			bank_name: "Fidelity Bank",
+		},
 		{
 			account_name: "Bloom Digital media ltd (Billing)",
 			account_number: "0126532175",
