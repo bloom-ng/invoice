@@ -12,12 +12,12 @@ function Create({}) {
 			bank_name: "Fidelity Bank",
 		},
 		{
-			account_name: "Bloom Digital media ltd (Billing)",
+			account_name: "BLOOM DIGITAL MEDIA Ltd (Billing)",
 			account_number: "0126532175",
 			bank_name: "Wema Bank",
 		},
 		{
-			account_name: "Bloom Digital media ltd",
+			account_name: "BLOOM DIGITAL MEDIA Ltd",
 			account_number: "0126528905",
 			bank_name: "Wema Bank",
 		},
